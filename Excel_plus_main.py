@@ -37,7 +37,7 @@ class ui_window(tk.Frame):
 
         #テンプレート入力
         self.template_box = tk.Entry(width=47)
-        self.template_box.place(x=2.5, y=21.5)
+        self.template_box.place(x=10, y=21.5)
 
         #クリアボタン
         clear_button = tk.Button(text="All Clear")
