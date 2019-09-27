@@ -97,7 +97,10 @@ class ui_window(tk.Frame):
             try:
                 for i in range(loop_number):
                     number = after_text[after_text.find(word) + 1]
-                    after_text = re.sub(word + number, self.open_file.iat[column, int(number) - 1], after_text)
+                    a = str(self.open_file.iat[column, int(number) - 1])
+                    if a == "nan":
+                        a = "null"
+                    after_text = re.sub(word + number, a, after_text)
 
             except ValueError:
                 self.text_box.insert(tk.END, after_text + "\n")
