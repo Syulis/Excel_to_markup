@@ -10,6 +10,6 @@ All Clear
 Copy
 クリップボードにコピー
 
-end
+End
 アプリケーション終了
 

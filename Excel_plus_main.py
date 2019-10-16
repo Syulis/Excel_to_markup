@@ -71,16 +71,16 @@ class ui_window(tk.Frame):
 
         # ファイル読み込み
         try:
-            self.open_file = pd.read_excel(Excel_data["stat"]["open_file"], header=None, index_col=None)
+            self.open_file = pd.read_excel(Excel_data["stat"]["open_file"], index_col=None, header=None)
             self.put_log("green", "Loaded")
         except:
             self.file_open()
 
     #ファイルオープン
     def file_open(self):
-        fld = filedialog.askopenfilenames(initialdir="./Excel_File", header=None, index_col=None)
+        fld = filedialog.askopenfilenames(initialdir="./Excel_File")
         Excel_data["stat"]["open_file"] = fld[0]
-        self.open_file = pd.read_excel(Excel_data["stat"]["open_file"])
+        self.open_file = pd.read_excel(Excel_data["stat"]["open_file"], index_col=None, header=None)
         self.put_log("green", "Loaded")
 
     #実行
@@ -97,10 +97,10 @@ class ui_window(tk.Frame):
             try:
                 for i in range(loop_number):
                     number = after_text[after_text.find(word) + 1]
-                    a = str(self.open_file.iat[column, int(number) - 1])
-                    if a == "nan":
-                        a = "null"
-                    after_text = re.sub(word + number, a, after_text)
+                    text = str(self.open_file.iat[column, int(number) - 1])
+                    if text == "nan":
+                        text = "&nbsp;"
+                    after_text = re.sub(word + number, text, after_text)
 
             except ValueError:
                 self.text_box.insert(tk.END, after_text + "\n")
